@@ -1,0 +1,50 @@
+void merge(vector<int>& nums, int low, int mid, int high) {
+        int i = low, j = mid+1;
+        vector<int> ans;
+
+        while (i <=mid and j <= high) {
+            if (nums[i] <= nums[j]) {
+                ans.push_back(nums[i]);
+                i++;
+            } else if (nums[i] > nums[j]) {
+                ans.push_back(nums[j]);
+                j++;
+            }
+        }
+
+        while (i <= mid) {
+            ans.push_back(nums[i]);
+            i++;
+        }
+
+        while (j <= high) {
+            ans.push_back(nums[j]);
+            j++;
+        }
+
+        // Copy merged elements back to nums
+    for (int k = 0; k < ans.size(); k++) {
+        nums[low + k] = ans[k];
+    }
+
+    }
+
+    void mergeSort(vector<int>& nums, int low, int high) {
+
+        if (low < high) {
+            int mid = low + (high - low) / 2;
+
+            mergeSort(nums, low, mid);
+            mergeSort(nums, mid + 1, high);
+            merge(nums, low, mid, high);
+        }
+    }
+    vector<int> sortArray(vector<int>& nums) {
+        int low = 0;
+        int high = nums.size()-1;
+
+
+        mergeSort(nums, low, high);
+
+        return nums;
+    }
