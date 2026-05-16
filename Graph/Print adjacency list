@@ -1,0 +1,14 @@
+// https://www.geeksforgeeks.org/batch/cp-13/track/DSASP-Graph/problem/print-adjacency-list-1587115620
+
+vector<vector<int>> printGraph(int V, vector<pair<int, int>> & edges) {
+		vector<vector<int>> graph(V);
+		
+		// creating the graph
+		for (auto j : edges) {
+			graph[j.first].push_back(j.second);
+			graph[j.second].push_back(j.first);
+		}
+		
+		return graph;
+		
+	}
